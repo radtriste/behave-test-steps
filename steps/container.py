@@ -154,8 +154,11 @@ class Container(object):
             d.exec_start(inst, detach)
             return None
 
+        self.logger.debug("Execute %s in container" % cmd)
         output = d.exec_start(inst, detach=detach)
+        self.logger.debug(output)
         retcode = d.exec_inspect(inst)['ExitCode']
+        self.logger.debug("retCode = %d" % retCode)
 
         count = 0
 

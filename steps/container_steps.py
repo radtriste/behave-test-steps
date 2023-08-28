@@ -169,6 +169,7 @@ def wait_for_process(context, pname):
     Methods which runs ps in a container looking fo
     given process
     """
+    logger.debug("Waiting for process %s" % pname)
     start_time = time.time()
     timeout = 10
     while time.time() < start_time + timeout:
@@ -176,6 +177,7 @@ def wait_for_process(context, pname):
             run_command_immediately_expect_message(context, "ps -C %s" % pname, pname)
             return
         except:
+            logger.debug("Issue waiting for process")
             time.sleep(1)
 
 
